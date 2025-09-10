@@ -6,18 +6,20 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-  
+
 jobs:
-  
+
   build:
-    
+
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Build image
-        run: docker build -t pmpoyi2024/my-resume .
-
-      - name: Push image
+        run: docker build -t ${{secrets.REGISTRY_USER}}/my-resume
+        name: push image
+        run : |
+      
+      - name: Run a multi-line script
         run: |
-            docker login -u pmpoyi2024 -p ${{secrets.REGISTRY_PASS}}
-            docker push pmpoyi2024/my-resume
+        docker login -u ${{secrets.REGISTRY_USER}} -p ${secrets.REGISTRY_PASS}}
+        docker push ${{secrets.REGISTRY_USER}}/my-resume 
