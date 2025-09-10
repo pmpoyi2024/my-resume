@@ -23,6 +23,9 @@ jobs:
         run : |
       - name: Run a multi-line script
         run: |
-        docker login -u ${{secrets.REGISTRY_USER}} -p ${secrets.REGISTRY_PASS}}
+        docker login -u ${{secrets.REGISTRY_USER}} -p ${{secrets.REGISTRY_PASS}}
         docker build -t ${{secrets.REGISTRY_USER}}/my-resume:${{github.run_number}} .
         docker push ${{secrets.REGISTRY_USER}}/my-resume 
+
+
+ 
